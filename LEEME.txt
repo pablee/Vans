@@ -1,0 +1,4 @@
+Base de datos (excel.csv)
+1- Copiar el resultado de la consulta VansBarras.sql
+2- Pegar los valores en un excel y guardarlo en formato csv.
+3- Abrir con el notepad++ y borrar todos los "\r" (el \r modifica el campo barra en la base)
