@@ -1,13 +1,14 @@
 <?php
 	session_start();
-	include "clases/articulos.php";
+	include_once "clases/database.php";
+	include_once "clases/articulos.php";
 	
 	date_default_timezone_set('America/Argentina/Buenos_Aires');
 	setlocale (LC_TIME,"spanish");
 	$fecha = date("d-m-Y H:i:s");
 	$fecha2 = strftime("%A %e de %B");
 	
-	$_SESSION["barra"]="";
+	//$_SESSION["barra"]="";
 	$_SESSION["i"]=0;
 ?>
 
@@ -24,23 +25,6 @@
 	<script src="bootstrap/js/bootstrap.min.js"></script>	
 	<script type="text/javascript" src="scripts/funciones.js"></script>
 	
-	<style>
-		.myProgress {
-		//width: 100%;
-		background-color: #ddd;
-		}
-
-		.llenarBarra {
-		width: 0%;
-		height: 5px;
-		background-color: #4CAF50;
-		text-align: center;
-		line-height: 30px;
-		color: white;
-		}
-				
-	</style>	
-
 </head>
 
 <body onload="crearBase()">
@@ -57,13 +41,6 @@
 				<div class="form-group">
 					<label for="barra"> Codigo de barras </label>
 					<input id="barra" type="text" class="form-control" placeholder="Ingrese el codigo de barras" onkeypress="ingresarBarras(event)"></input>
-					<!--Barra de espera-->
-					<div id="progresoBarra"> 
-						
-					</div>
-					<!--div>
-						<span id="obtenerProgreso"></span>&nbsp;% completado
-					</div-->
 				</div>
 				<button type="button" class="btn btn-info" onclick="ingresarBarras('0'); callprogress('100')"> Ingresar </button>	
 				<a href="home.php" class="btn btn-info"> Nuevo </a>	
@@ -97,34 +74,6 @@
 		</div>	
 	</div>	
 	
-	<!-- Trigger the modal with a button 
-	<button type="button" class="btn btn-info" data-toggle="modal" data-target="#consulta" data-backdrop="static">Open Modal</button>
-	-->
-	<!-- Modal 
-	<div class="modal fade" id="consulta" role="dialog">
-		<div class="modal-dialog">		
-			<!-- Modal content
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Buscando articulos...</h4>
-				</div>
-				<div class="modal-body">
-					<!--Barra de espera
-					<div id="progresoBarra"> 
-						
-					</div>
-					<div>
-						<span id="obtenerProgreso"></span>&nbsp;% completado
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				</div>
-			</div>	
-		</div>
-	</div>
-	-->
 </body>
 
 

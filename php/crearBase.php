@@ -1,7 +1,5 @@
 <?php
 session_start();
-include "../clases/database.php";
-include "../clases/articulos.php";
 
 $db = new database();
 $db->conectar();	

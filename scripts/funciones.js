@@ -48,28 +48,6 @@ function ingresarBarras(event)
 		}
 	}
 
-//Barra de espera	
-function callprogress()
-	{
-	xhttp = new XMLHttpRequest();
-	xhttp.onreadystatechange = function()
-		{
-		if (this.readyState == 4 && this.status == 200)			
-			{				
-			document.getElementById("progresoBarra").innerHTML = this.response;					
-			}	
-		}
-	xhttp.open("GET", "php/progresoBarra.php", true);		
-	xhttp.send();			
-	}		
-/*	
-function callprogress(vValor)
-	{
-	document.getElementById("obtenerProgreso").innerHTML = vValor;
-	document.getElementById("progresoBarra").innerHTML = '<div class="llenarBarra" style="width: '+vValor+'%;"></div>';						
-	}		
-*/	
-
 //Resta del contador los articulos borrados
 function restar()
 	{
