@@ -1,10 +1,10 @@
 <?php
-include_once "database.php";
-	
+
 class articulo	{
 				public $linea;
 				public $modelo;
 				public $codigo;
+				public $temporada;
 				public $medida;
 				public $barra;
 				public $cantidad;
@@ -19,13 +19,15 @@ class articulo	{
 						echo '<br>';
 						echo $this->codigo;
 						echo '<br>';
+						echo $this->temporada;
+						echo '<br>';
 						echo $this->medida;
 						echo '<br>';
 						echo $this->barra;
 						echo '<br>';
 						echo $this->cantidad;
 						}
-
+						
 				public function consultarArticulo($codigo_barra)
 						{
 						$db=new database();
@@ -37,17 +39,18 @@ class articulo	{
 							
 						$resultado = mysqli_query($db->conexion, $consulta) 
 						or die ("No se encontro el codigo de barra en la base.");																							
-							
+												
 						while($producto = mysqli_fetch_assoc($resultado))
-							{
+							{							
 							echo'	
 								<tr>
 									<td> '.$producto["linea"].' </td>
 									<td> '.$producto["modelo"].' </td>
 									<td> '.$producto["codigo"].' </td>
+									<td> '.$producto["temporada"].' </td>
 									<td> '.$producto["DescMedida"].' </td>
 									<td> '.$producto["barra"].' </td>																	
-								
+									
 								';									
 							}
 						
@@ -55,6 +58,7 @@ class articulo	{
 							{
 							echo'	
 								<tr>
+									<td> No existe </td>
 									<td> No existe </td>
 									<td> No existe </td>
 									<td> No existe </td>
@@ -87,7 +91,7 @@ class articulo	{
 							}	
 						
 						//Genera las filas de la tabla articulos
-						$consulta ="SELECT P.marca, P.linea, P.modelo, P.codigo, P.DescMedida, L.barra, COUNT(L.barra) as cantidad 
+						$consulta ="SELECT P.marca, P.linea, P.modelo, P.codigo, P.temporada, P.DescMedida, L.barra, COUNT(L.barra) as cantidad 
 									FROM listado L JOIN productos P ON L.barra = P.barra
 									GROUP BY L.barra;";			
 						$resultado = mysqli_query($db->conexion, $consulta) 
@@ -100,6 +104,7 @@ class articulo	{
 									<td> '.$producto["linea"].' </td>
 									<td> '.$producto["modelo"].' </td>
 									<td> '.$producto["codigo"].' </td>
+									<td> '.$producto["temporada"].' </td>
 									<td> '.$producto["DescMedida"].' </td>
 									<td> '.$producto["barra"].' </td>					
 									<td> '.$producto["cantidad"].' </td>	

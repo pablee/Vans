@@ -3,7 +3,7 @@ session_start();
 include "../clases/database.php";
 
 //antes de subir el archivo se debe borrar el \r
-$target_path = "../../../../mysql/data/vans/";
+$target_path = "../../../mysql/data/vans/";
 $target_path = $target_path . basename($_FILES['archivo']['name']); 
 
 if(move_uploaded_file($_FILES['archivo']['tmp_name'], $target_path)) 

@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once "../clases/database.php";
-include_once "../clases/articulos.php";
+include "../clases/database.php";
+include "../clases/articulos.php";
 
 $guardar="'guardar'";
 $consultar="'consultar'";
@@ -21,32 +21,33 @@ if(isset($_GET["id"]))
 	$id=$_GET["id"];
 	$_SESSION["barra"][$id]="";	
 	}
-
-if($barra!=""&&$barra!="guardar")
+	
+if($barra!=""&&$barra!="consultar"&&$barra!="guardar")
 	{
 	$_SESSION["barra"][$_SESSION["i"]]=$barra;
-	$_SESSION["i"]+=1;		
+	$_SESSION["i"]+="1";			
 	}
+
+$encabezados = array("Linea", "Modelo", "Codigo", "Temporada", "Medida", "Barra");
 	
 //Tabla articulos	
 echo'	
 	<div class="table-responsive">          
 	  <table id="articulos" class="table">
 		<thead>
-		  <tr>
-			<th> Linea </th>
-			<th> Modelo </th>
-			<th> Codigo </th>
-			<th> Medida </th>
-			<th> Barra </th>
+			<tr>			
 	';		
+		foreach($encabezados as $encabezado)
+			{
+			echo "<th>".$encabezado."</th>";	
+			}
+
+		if($barra=="guardar")
+			{
+			echo'<th> Cantidad </th>';
+			}
 	
-	if($barra=="guardar")
-		{
-		echo'<th> Cantidad </th>';
-		}
-	
-echo'	  </tr>
+echo'	  	</tr>
 		</thead>
 		
 		<tbody>
@@ -57,12 +58,16 @@ if($barra=="guardar")
 	{	
 	$codigos=$_SESSION["barra"];
 	$articulo->guardarArticulo($codigos);
-	session_unset();
 	}
 	else{
 		//Consulta en la base el articulo ingresado
 		$i=0;
-		foreach($_SESSION["barra"] as $codigo_barra)
+		
+		//Orden menor a mayor:
+		//foreach($_SESSION["barra"] as $codigo_barra)
+		
+		//Orden mayor a menor:
+		foreach(array_reverse($_SESSION["barra"]) as $codigo_barra)
 			{
 			if($codigo_barra!="")
 				{

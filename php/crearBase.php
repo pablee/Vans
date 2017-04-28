@@ -14,6 +14,7 @@ $consulta ="CREATE TABLE IF NOT EXISTS productos
 				linea varchar(31) DEFAULT NULL,
 				modelo varchar(50) DEFAULT NULL,
 				codigo char(20) DEFAULT NULL,
+				temporada VARCHAR(31) NOT NULL,
 				DescMedida char(5) DEFAULT NULL,
 				barra varchar(50) NOT NULL,
 				PRIMARY KEY (barra),
