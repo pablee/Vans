@@ -28,18 +28,18 @@ class articulo	{
 						echo $this->cantidad;
 						}
 						
-				public function consultarArticulo($codigo_barra)
+				public function consultarArticulo($codigo_barra, $i)
 						{
 						$db=new database();
 						$db->conectar();	
 						
 						$consulta ="SELECT *
-							FROM productos
-							WHERE barra = $codigo_barra;";		
+									FROM productos
+									WHERE barra = $codigo_barra;";		
 							
 						$resultado = mysqli_query($db->conexion, $consulta) 
 						or die ("No se encontro el codigo de barra en la base.");																							
-												
+						
 						while($producto = mysqli_fetch_assoc($resultado))
 							{							
 							echo'	
@@ -67,6 +67,15 @@ class articulo	{
 								
 								';			
 							}
+
+						echo'			
+							<td> 
+								<a onclick="sacarArticulo('.$i.'); restar()">
+									<span class="glyphicon glyphicon-remove"></span> 
+								</a>
+							</td>	
+							';
+							
 						$db->close();	
 						}
 					
@@ -122,6 +131,7 @@ class articulo	{
 							{
 							echo'	
 								<tr>
+									<td> No existe </td>
 									<td> No existe </td>
 									<td> No existe </td>
 									<td> No existe </td>

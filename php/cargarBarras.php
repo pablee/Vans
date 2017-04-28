@@ -60,32 +60,24 @@ if($barra=="guardar")
 	$articulo->guardarArticulo($codigos);
 	}
 	else{
-		//Consulta en la base el articulo ingresado
-		$i=0;
+		//Consulta en la base el articulo ingresado		
+		$i=$_SESSION["i"]-"1";
 		
 		//Orden menor a mayor:
 		//foreach($_SESSION["barra"] as $codigo_barra)
 		
 		//Orden mayor a menor:
-		foreach(array_reverse($_SESSION["barra"]) as $codigo_barra)
+		foreach(array_reverse($_SESSION["barra"]) as $codigo_barra)		
 			{
 			if($codigo_barra!="")
 				{
-				$articulo->consultarArticulo($codigo_barra);
-				echo'						
-						<td> 
-							<a onclick="sacarArticulo('.$i.'); restar()">
-								<span class="glyphicon glyphicon-remove"></span> 
-							</a>
-						</td>
-					</tr>	
-					';			
+				$articulo->consultarArticulo($codigo_barra, $i);		
 				}	
-			$i++;	
+			$i--;	
 			}		
 		}
 	
-echo'	
+echo'		</tr>
 		</tbody>
 	  </table>
 	  
