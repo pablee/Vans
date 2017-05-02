@@ -19,6 +19,7 @@ function ingresarBarras(event)
 		if(event=="guardar")
 			{		
 			var barra = "guardar";
+			document.getElementById("cantidad").innerHTML="<th id='cantidad'> Cantidad </th>";					
 			}
 			else if(event=="consultar")
 				{
@@ -26,25 +27,36 @@ function ingresarBarras(event)
 				}
 				else{
 					var barra = document.getElementById("barra").value;
-					//cuenta los articulos ingresados
-					if(barra!="")
+					//Cuenta los articulos ingresados
+					if(barra!=""&&barra!="guardar")
 						{
 						articulos +=1;
 						document.getElementById("contador").innerHTML = articulos;	
 						}
 					}	
-					
+	
+		//Procesa la solicitud en base al valor pasado en "barra"
 		xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function()
 			{
 			if (this.readyState == 4 && this.status == 200)			
 				{
 				document.getElementById("lista").innerHTML=this.responseText;							
-				document.getElementById("barra").value="";					
+				document.getElementById("barra").value="";
 				}
 			};
 		xhttp.open("GET", "php/cargarBarras.php?barra="+barra, true);		
-		xhttp.send();			
+		xhttp.send();	
+		
+		//Toma el ultimo articulo ingresado a la "lista" y lo añade al "listado" de todos los articulos
+		var ultimoIngreso = document.getElementById("lista").innerHTML;			
+		if(barra!="guardar")
+			{
+			document.getElementById("listado").innerHTML+=ultimoIngreso;		
+			}
+			else{
+				document.getElementById("listado").innerHTML="";
+				}
 		}
 	}
 
@@ -55,6 +67,7 @@ function restar()
 	document.getElementById("contador").innerHTML = articulos;
 	};
 	
+//Borra el articulo del listado final	
 function sacarArticulo(id)
 	{
 	//alert(id);
@@ -64,7 +77,7 @@ function sacarArticulo(id)
 		{					
 		if (this.readyState == 4 && this.status == 200)
 				{							
-				document.getElementById("lista").innerHTML=this.responseText;							
+				document.getElementById(id).innerHTML="";							
 				document.getElementById("barra").value="";
 				}
 		};

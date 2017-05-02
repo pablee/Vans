@@ -27,45 +27,30 @@ if($barra!=""&&$barra!="consultar"&&$barra!="guardar")
 	$_SESSION["barra"][$_SESSION["i"]]=$barra;
 	$_SESSION["i"]+="1";			
 	}
-
-$encabezados = array("Linea", "Modelo", "Codigo", "Temporada", "Medida", "Barra");
-	
-//Tabla articulos	
-echo'	
-	<div class="table-responsive">          
-	  <table id="articulos" class="table">
-		<thead>
-			<tr>			
-	';		
-		foreach($encabezados as $encabezado)
-			{
-			echo "<th>".$encabezado."</th>";	
-			}
-
-		if($barra=="guardar")
-			{
-			echo'<th> Cantidad </th>';
-			}
-	
-echo'	  	</tr>
-		</thead>
-		
-		<tbody>
-	';
-					
+			
 //Genera los listados 	
 if($barra=="guardar")
 	{	
-	$codigos=$_SESSION["barra"];
-	$articulo->guardarArticulo($codigos);
+	if($_SESSION["i"]==0)
+		{
+		echo "ERROR: Debe ingresar al menos un articulo.";	
+		}
+		else{
+			if($barra!="")
+				{
+				$codigos=$_SESSION["barra"];	
+				$articulo->guardarArticulo($codigos);
+				}
+			}	
 	}
 	else{
 		//Consulta en la base el articulo ingresado		
-		$i=$_SESSION["i"]-"1";
+		$i=$_SESSION["i"];
+		$articulo->consultarArticulo($barra, $i);	
 		
 		//Orden menor a mayor:
 		//foreach($_SESSION["barra"] as $codigo_barra)
-		
+		/*
 		//Orden mayor a menor:
 		foreach(array_reverse($_SESSION["barra"]) as $codigo_barra)		
 			{
@@ -75,15 +60,10 @@ if($barra=="guardar")
 				}	
 			$i--;	
 			}		
+		*/		
 		}
 	
-echo'		</tr>
-		</tbody>
-	  </table>
-	  
-	  <button type="button" class="btn btn-info" onclick="ingresarBarras('.$guardar.')"> Guardar </button>	
-	</div>
-	';
+
 	
 	
 	

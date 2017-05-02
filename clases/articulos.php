@@ -8,25 +8,35 @@ class articulo	{
 				public $medida;
 				public $barra;
 				public $cantidad;
-								
+				
+				private $campo_tabla = array("linea","modelo","codigo","temporada","medida","barra","cantidad");
 				//public function __construct(){}
 				
-				public function ver() 
+				public function ingresarArticulo($linea,$modelo,$codigo,$temporada,$medida,$barra,$cantidad) 
 						{
-						echo $this->linea;
-						echo '<br>';
-						echo $this->modelo;
-						echo '<br>';
-						echo $this->codigo;
-						echo '<br>';
-						echo $this->temporada;
-						echo '<br>';
-						echo $this->medida;
-						echo '<br>';
-						echo $this->barra;
-						echo '<br>';
-						echo $this->cantidad;
+						foreach($this->campo_tabla as $campo)
+							{
+							$this->$campo=$$campo;
+							}							
+						}						
+				
+				public function verArticulo() 
+						{
+						foreach($this->campo_tabla as $campo)
+							{
+							echo $this->$campo;
+							echo '<br>';	
+							}					
 						}
+						
+				public function verCamposArticulos() 
+						{
+						foreach($this->campo_tabla as $campo)
+							{
+							echo $campo;
+							echo '<br>';	
+							}					
+						}		
 						
 				public function consultarArticulo($codigo_barra, $i)
 						{
@@ -43,21 +53,21 @@ class articulo	{
 						while($producto = mysqli_fetch_assoc($resultado))
 							{							
 							echo'	
-								<tr>
+								<tr id='.$i.'>
 									<td> '.$producto["linea"].' </td>
 									<td> '.$producto["modelo"].' </td>
 									<td> '.$producto["codigo"].' </td>
 									<td> '.$producto["temporada"].' </td>
 									<td> '.$producto["DescMedida"].' </td>
 									<td> '.$producto["barra"].' </td>																	
-									
+								
 								';									
 							}
 						
 						if(0 == mysqli_num_rows($resultado))
 							{
 							echo'	
-								<tr>
+								<tr id='.$i.'>
 									<td> No existe </td>
 									<td> No existe </td>
 									<td> No existe </td>

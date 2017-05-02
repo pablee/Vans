@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	
+	include "clases/articulos.php";
 	date_default_timezone_set('America/Argentina/Buenos_Aires');
 	setlocale (LC_TIME,"spanish");
 	$fecha = date("d-m-Y H:i:s");
@@ -8,6 +8,12 @@
 	
 	$_SESSION["barra"]="";
 	$_SESSION["i"]=0;
+	
+	/*
+	$articulo = new articulo();
+	$articulo->ingresarArticulo("Classic","U ERA","VN-0QFK80Z","Invierno 2013-2013","11","1","0"); 
+	$articulo->verArticulo();
+	*/
 ?>
 
 <html>
@@ -22,23 +28,6 @@
 	<script src="jquery/jquery.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>	
 	<script type="text/javascript" src="scripts/funciones.js"></script>
-	
-	<style>
-		.myProgress {
-		//width: 100%;
-		background-color: #ddd;
-		}
-
-		.llenarBarra {
-		width: 0%;
-		height: 5px;
-		background-color: #4CAF50;
-		text-align: center;
-		line-height: 30px;
-		color: white;
-		}
-				
-	</style>	
 
 </head>
 
@@ -85,12 +74,42 @@
 				
 		<div class="row">
 			<br>
-			<div class="col-sm-6 col-md-10" id="lista">
+			<div class="table-responsive">          
+				<table id="articulos" class="table">
+					<thead>
+						<tr>						
+							<?php
+							$encabezados = array("Linea", "Modelo", "Codigo", "Temporada", "Medida", "Barra");					
+							foreach($encabezados as $encabezado)
+								{
+								echo "<th>".$encabezado."</th>";												
+								}
+							
+							echo "<th id='cantidad'></th>";		
+							?>
+						</tr>		
+					</thead>
+					
+					<tbody id="lista">
+						
+					</tbody>
+
+					<tbody id="listado">
+						
+					</tbody>		
+										
+				</table>
+				
+			<button type="button" class="btn btn-info" onclick="ingresarBarras('guardar')"> Guardar </button>	
+			</div>
+
+			<div class="col-sm-10 col-md-10">
 			
 			</div>	
 		</div>
 
-		<div>	
+		<div class="row">
+			<br>
 			<button id="exportar" class="btn btn-default" onclick="fnExcelReport()"> Exportar </button>
 			<iframe id="txtArea1" style="display:none"></iframe>
 		</div>	
