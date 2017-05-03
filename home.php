@@ -63,8 +63,10 @@
 						<label for="barras"> Actualizar articulos </label>
 						<input type="file" class="btn btn-default" name="archivo" id="archivo"></input>			
 						<br>
-						<input type="submit" class="btn btn-info" value="Actualizar" name="submit">
+						<input type="submit" class="btn btn-info" value="Actualizar" name="submit">						
 					</form>							
+					<button id="exportar" class="btn btn-default" onclick="fnExcelReport()"> Exportar </button>
+					<iframe id="txtArea1" style="display:none"></iframe>
 				</div>				
 			</div>
 		</div>
@@ -89,10 +91,6 @@
 							?>
 						</tr>		
 					</thead>
-					
-					<tbody id="lista">
-						
-					</tbody>
 
 					<tbody id="listado">
 						
@@ -110,8 +108,7 @@
 
 		<div class="row">
 			<br>
-			<button id="exportar" class="btn btn-default" onclick="fnExcelReport()"> Exportar </button>
-			<iframe id="txtArea1" style="display:none"></iframe>
+			
 		</div>	
 	</div>	
 	

@@ -20,43 +20,41 @@ function ingresarBarras(event)
 			{		
 			var barra = "guardar";
 			document.getElementById("cantidad").innerHTML="<th id='cantidad'> Cantidad </th>";					
-			}
-			else if(event=="consultar")
-				{
-				var barra = "consultar";
-				}
-				else{
-					var barra = document.getElementById("barra").value;
-					//Cuenta los articulos ingresados
-					if(barra!=""&&barra!="guardar")
-						{
-						articulos +=1;
-						document.getElementById("contador").innerHTML = articulos;	
-						}
-					}	
-	
+			}			
+			else{
+				document.getElementById("cantidad").innerHTML="<th id='cantidad'></th>";
+				var barra = document.getElementById("barra").value;
+
+				//Cuenta los articulos ingresados
+				if(barra!=""&&barra!="guardar")
+					{
+					articulos +=1;
+					document.getElementById("contador").innerHTML = articulos;	
+					}
+				}	
+
 		//Procesa la solicitud en base al valor pasado en "barra"
 		xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function()
 			{
 			if (this.readyState == 4 && this.status == 200)			
 				{
-				document.getElementById("lista").innerHTML=this.responseText;							
+				if(barra!="guardar")
+					{	
+					var ultimoIngreso=this.responseText;
+					var tabla_listado = document.getElementById("listado");
+					var fila = tabla_listado.insertRow(0);
+					fila.innerHTML=ultimoIngreso+"<td id="+articulos+">"+articulos+"</td>";
+					}
+					else{
+						document.getElementById("listado").innerHTML=this.responseText;
+						}				
+				//document.getElementById("lista").innerHTML=this.responseText;				
 				document.getElementById("barra").value="";
 				}
 			};
 		xhttp.open("GET", "php/cargarBarras.php?barra="+barra, true);		
-		xhttp.send();	
-		
-		//Toma el ultimo articulo ingresado a la "lista" y lo añade al "listado" de todos los articulos
-		var ultimoIngreso = document.getElementById("lista").innerHTML;			
-		if(barra!="guardar")
-			{
-			document.getElementById("listado").innerHTML+=ultimoIngreso;		
-			}
-			else{
-				document.getElementById("listado").innerHTML="";
-				}
+		xhttp.send();
 		}
 	}
 
@@ -70,18 +68,27 @@ function restar()
 //Borra el articulo del listado final	
 function sacarArticulo(id)
 	{
-	//alert(id);
+	alert(id);
+	/*
+	id_fila=document.getElementById(id).innerHTML;
+	alert(id_fila);
+	
+	Ejemplo:
+	fila a sacar n°57 id=57
+	el numero que se obtiene al buscar el id 57 es tambien 57
+	total_filas-id = fila a borrar
+	*/
 	xhttp = new XMLHttpRequest();
-
 	xhttp.onreadystatechange = function()	
 		{					
 		if (this.readyState == 4 && this.status == 200)
-				{							
-				document.getElementById(id).innerHTML="";							
-				document.getElementById("barra").value="";
-				}
-		};
-		
+			{
+			id_fila=this.responseText;		
+			var tabla_listado = document.getElementById("listado");
+			var fila = tabla_listado.deleteRow(id_fila);
+			document.getElementById("barra").value="";
+			}
+		};	
 	xhttp.open("GET", "php/cargarBarras.php?id="+id, true);		
 	xhttp.send();							
 	}
