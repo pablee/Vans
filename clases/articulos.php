@@ -7,9 +7,10 @@ class articulo	{
 				public $temporada;
 				public $medida;
 				public $barra;
+				public $precio;
 				public $cantidad;
 				
-				private $campo_tabla = array("linea","modelo","codigo","temporada","medida","barra","cantidad");
+				private $campo_tabla = array("linea","modelo","codigo","temporada","medida","barra","precio","cantidad");
 				//public function __construct(){}
 				
 				public function ingresarArticulo($linea,$modelo,$codigo,$temporada,$medida,$barra,$cantidad) 
@@ -60,14 +61,15 @@ class articulo	{
 									<td> '.$producto["temporada"].' </td>
 									<td> '.$producto["DescMedida"].' </td>
 									<td> '.$producto["barra"].' </td>																	
-								
-								';									
+									<td> '.$producto["precio"].' </td>									
+								';											
 							}
 						
 						if(0 == mysqli_num_rows($resultado))
 							{
 							echo'	
 								<tr id='.$i.'>
+									<td> No existe </td>
 									<td> No existe </td>
 									<td> No existe </td>
 									<td> No existe </td>
@@ -110,7 +112,7 @@ class articulo	{
 							}	
 						
 						//Genera las filas de la tabla articulos
-						$consulta ="SELECT P.marca, P.linea, P.modelo, P.codigo, P.temporada, P.DescMedida, L.barra, COUNT(L.barra) as cantidad 
+						$consulta ="SELECT P.marca, P.linea, P.modelo, P.codigo, P.temporada, P.DescMedida, L.barra, P.precio, COUNT(L.barra) as cantidad 
 									FROM listado L JOIN productos P ON L.barra = P.barra
 									GROUP BY L.barra;";			
 						$resultado = mysqli_query($db->conexion, $consulta) 
@@ -125,7 +127,8 @@ class articulo	{
 									<td> '.$producto["codigo"].' </td>
 									<td> '.$producto["temporada"].' </td>
 									<td> '.$producto["DescMedida"].' </td>
-									<td> '.$producto["barra"].' </td>					
+									<td> '.$producto["barra"].' </td>		
+									<td> '.$producto["precio"].' </td>									
 									<td> '.$producto["cantidad"].' </td>	
 								  </tr>
 								';	

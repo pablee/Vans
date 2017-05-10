@@ -39,6 +39,7 @@ if($barra=="guardar")
 				{
 				$codigos=$_SESSION["barra"];	
 				$articulo->guardarArticulo($codigos);
+				session_unset();
 				}
 			}	
 	}

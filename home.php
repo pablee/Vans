@@ -6,7 +6,7 @@
 	$fecha = date("d-m-Y H:i:s");
 	$fecha2 = strftime("%A %e de %B");
 	
-	$_SESSION["barra"]="";
+	//$_SESSION["barra"]="";
 	$_SESSION["i"]=0;
 	
 	/*
@@ -28,7 +28,6 @@
 	<script src="jquery/jquery.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>	
 	<script type="text/javascript" src="scripts/funciones.js"></script>
-
 </head>
 
 <body onload="crearBase()">
@@ -81,7 +80,7 @@
 					<thead>
 						<tr>						
 							<?php
-							$encabezados = array("Linea", "Modelo", "Codigo", "Temporada", "Medida", "Barra");					
+							$encabezados = array("Linea", "Modelo", "Codigo", "Temporada", "Medida", "Barra", "Precio");					
 							foreach($encabezados as $encabezado)
 								{
 								echo "<th>".$encabezado."</th>";												
