@@ -2,15 +2,26 @@ function crearBase()
 	{		
 	//alert("creando base");
 	xhttp = new XMLHttpRequest();
-	if (this.readyState == 4 && this.status == 200)			
-			{
-			document.getElementById("lista").innerHTML=this.responseText;							
-			document.getElementById("barra").value="";					
-			}
 	xhttp.open("GET", "php/crearBase.php", true);		
 	xhttp.send();	
 	}
 
+function ver(archivo)
+	{	
+	//alert(archivo);
+	xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function()	
+		{
+		if (this.readyState == 4 && this.status == 200)
+			{
+			//document.getElementById("comandos").innerHTML = this.responseText;
+			document.getElementById("listado").innerHTML = this.responseText;
+			}
+		};		
+	xhttp.open("GET", "php/vistas/"+archivo+".php", true);		
+	xhttp.send();	
+	}	
+	
 var articulos = 0;
 function ingresarBarras(event)
 	{	

@@ -6,14 +6,8 @@
 	$fecha = date("d-m-Y H:i:s");
 	$fecha2 = strftime("%A %e de %B");
 	
-	//$_SESSION["barra"]="";
 	$_SESSION["i"]=0;
 	
-	/*
-	$articulo = new articulo();
-	$articulo->ingresarArticulo("Classic","U ERA","VN-0QFK80Z","Invierno 2013-2013","11","1","0"); 
-	$articulo->verArticulo();
-	*/
 ?>
 
 <html>
@@ -35,41 +29,39 @@
 	<!--div class="container-fluid"-->
 		<div class="row">
 			<div class="col-sm-4 col-md-8">
-				<h1>Vans<h1>
+				<h1>Vans</h1>
+				<!--img src="img/banner.jpg" alt="vans"-->
 			</div>		
 		</div>
 		
-		<div class="row" id="contenido">
-			<div class="col-sm-3 col-md-6">	
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<ul class="nav navbar-nav">
+					<li><a href="#"><img src="img/vans_logo_rojo.png" alt="vans_logo"></a></li>
+					<li><a href="home.php">Home</a></li>
+					<li><a href="home.php">Nuevo Inventario</a></li>
+					<li><a href="#" onclick="ver('inventario')">Ver Inventario</a></li>
+					<li><a href="#" onclick="ver('formularioActualizar')">Actualizar articulos</a></li>
+				</ul>
+			</div>
+		</nav>
+		
+		<div class="row" id="comandos">
+			<div class="col-sm-6 col-md-6 form-inline">	
 				<div class="form-group">
-					<label for="barra"> Codigo de barras </label>
-					<input id="barra" type="text" class="form-control" placeholder="Ingrese el codigo de barras" onkeypress="ingresarBarras(event)"></input>
-					<!--Barra de espera-->
-					<div id="progresoBarra"> 
-						
-					</div>
-					<!--div>
-						<span id="obtenerProgreso"></span>&nbsp;% completado
-					</div-->
+					<label for="barra"> Codigo de barras: </label>
+					<input id="barra" type="text" class="form-control" placeholder="Ingrese el codigo de barras" onkeypress="ingresarBarras(event)"></input>										
 				</div>
-				<button type="button" class="btn btn-info" onclick="ingresarBarras('0'); callprogress('100')"> Ingresar </button>	
-				<a href="home.php" class="btn btn-info"> Nuevo </a>	
-			</div>
-												
-			<div class="col-sm-3 col-md-6">	
-				<div class="form-group">
-					<form action="php/uploadFile.php" method="post" enctype="multipart/form-data">		
-						<label for="barras"> Actualizar articulos </label>
-						<input type="file" class="btn btn-default" name="archivo" id="archivo"></input>			
-						<br>
-						<input type="submit" class="btn btn-info" value="Actualizar" name="submit">						
-					</form>							
-					<button id="exportar" class="btn btn-default" onclick="fnExcelReport()"> Exportar </button>
-					<iframe id="txtArea1" style="display:none"></iframe>
-				</div>				
-			</div>
+				<button type="button" class="btn btn-info" onclick="ingresarBarras('0'); callprogress('100')"> Ingresar </button>					
+			</div>									
+			<div class="col-sm-6 col-md-6" id="formularioActualizar">	
+				<button type="button" class="btn btn-info" onclick="ingresarBarras('guardar')"> Guardar </button>
+				<button id="exportar" class="btn btn-default" onclick="fnExcelReport()"> Exportar </button>
+				<iframe id="txtArea1" style="display:none"></iframe>		
+			</div>			
 		</div>
 		
+		<hr>
 		<label>Articulos escaneados: </label>
 		<span id="contador"></span>	
 				
@@ -93,11 +85,9 @@
 
 					<tbody id="listado">
 						
-					</tbody>		
-										
+					</tbody>							
 				</table>
-				
-			<button type="button" class="btn btn-info" onclick="ingresarBarras('guardar')"> Guardar </button>	
+					
 			</div>
 
 			<div class="col-sm-10 col-md-10">

@@ -1,4 +1,5 @@
 <?php
+include_once ("database.php");
 
 class articulo	{
 				public $linea;
@@ -21,13 +22,30 @@ class articulo	{
 							}							
 						}						
 				
-				public function verArticulo() 
+				public function verInventario() 
 						{
+						$db=new database();
+						$db->conectar();	
+						
+						$consulta ="SELECT *
+									FROM listado;";		
+							
+						$resultado = mysqli_query($db->conexion, $consulta) 
+						or die ("No se encontro el ultimo inventario en la base.");	
+						$i=0;
+						while($producto = mysqli_fetch_assoc($resultado))
+							{
+							//Consultar articulo
+							$this->consultarArticulo($producto["barra"], $i);
+							$i++;									
+							}
+						/*
 						foreach($this->campo_tabla as $campo)
 							{
 							echo $this->$campo;
 							echo '<br>';	
-							}					
+							}
+						*/	
 						}
 						
 				public function verCamposArticulos() 
@@ -148,8 +166,9 @@ class articulo	{
 									<td> No existe </td>
 									<td> No existe </td>
 									<td> No existe </td>
-									<td> No existe </td>
+									<td> No existe </td>									
 									<td> '.$producto["barra"].' </td>				
+									<td> No existe </td>
 									<td> '.$producto["cantidad"].' </td>			
 								</tr>
 								';			
