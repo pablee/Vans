@@ -5,7 +5,7 @@ echo '<div class="col-sm-6 col-md-6 form-group">
 			<label for="barras"> Actualizar articulos </label>
 			<input type="file" class="btn btn-default" name="archivo" id="archivo"></input>			
 			<br>
-			<input type="submit" class="btn btn-info" value="Actualizar" name="submit">						
+			<input type="submit" class="btn btn-danger" value="Actualizar" name="submit">						
 		</form>							
 	  </div>';
 

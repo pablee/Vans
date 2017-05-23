@@ -16,6 +16,7 @@ function ver(archivo)
 			{
 			//document.getElementById("comandos").innerHTML = this.responseText;
 			document.getElementById("listado").innerHTML = this.responseText;
+			//document.getElementById("contenido").innerHTML = this.responseText;
 			}
 		};		
 	xhttp.open("GET", "php/vistas/"+archivo+".php", true);		

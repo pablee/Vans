@@ -28,16 +28,16 @@
 	<div class="container">
 	<!--div class="container-fluid"-->
 		<div class="row">
-			<div class="col-sm-4 col-md-8">
-				<h1>Vans</h1>
-				<!--img src="img/banner.jpg" alt="vans"-->
+			<div class="col-sm-8 col-md-8">
+				<!--h1>Vans</h1-->
+				<img src="img/vans_banner.jpg" alt="vans">
 			</div>		
 		</div>
 		
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<ul class="nav navbar-nav">
-					<li><a href="#"><img src="img/vans_logo_rojo.png" alt="vans_logo"></a></li>
+					<li><img src="img/vans_logo_rojo.png" alt="vans_logo" style="margin: 10 0 0 0px"></li>
 					<li><a href="home.php">Home</a></li>
 					<li><a href="home.php">Nuevo Inventario</a></li>
 					<li><a href="#" onclick="ver('inventario')">Ver Inventario</a></li>
@@ -52,10 +52,10 @@
 					<label for="barra"> Codigo de barras: </label>
 					<input id="barra" type="text" class="form-control" placeholder="Ingrese el codigo de barras" onkeypress="ingresarBarras(event)"></input>										
 				</div>
-				<button type="button" class="btn btn-info" onclick="ingresarBarras('0'); callprogress('100')"> Ingresar </button>					
+				<button type="button" class="btn btn-danger" onclick="ingresarBarras('0'); callprogress('100')"> Ingresar </button>					
 			</div>									
 			<div class="col-sm-6 col-md-6" id="formularioActualizar">	
-				<button type="button" class="btn btn-info" onclick="ingresarBarras('guardar')"> Guardar </button>
+				<button type="button" class="btn btn-danger" onclick="ingresarBarras('guardar')"> Guardar </button>
 				<button id="exportar" class="btn btn-default" onclick="fnExcelReport()"> Exportar </button>
 				<iframe id="txtArea1" style="display:none"></iframe>		
 			</div>			
