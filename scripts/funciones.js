@@ -1,3 +1,4 @@
+//No se utiliza.
 function crearBase()
 	{		
 	//alert("creando base");
@@ -6,9 +7,15 @@ function crearBase()
 	xhttp.send();	
 	}
 
+//Devuelve una vista segun la opcion elegida.
 function ver(archivo)
 	{	
 	//alert(archivo);
+	if(archivo=="inventario")
+		{
+		document.getElementById("cantidad").innerHTML="<th id='cantidad'> Cantidad </th>";
+		}
+		
 	xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function()	
 		{
@@ -22,6 +29,7 @@ function ver(archivo)
 	xhttp.open("GET", "php/vistas/"+archivo+".php", true);		
 	xhttp.send();	
 	}	
+
 	
 var articulos = 0;
 function ingresarBarras(event)
@@ -70,12 +78,14 @@ function ingresarBarras(event)
 		}
 	}
 
+	
 //Resta del contador los articulos borrados
 function restar()
 	{
 	articulos -=1;
 	document.getElementById("contador").innerHTML = articulos;
 	};
+
 	
 //Borra el articulo del listado final	
 function sacarArticulo(id)

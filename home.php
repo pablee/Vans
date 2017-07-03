@@ -22,26 +22,43 @@
 	<script src="jquery/jquery.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>	
 	<script type="text/javascript" src="scripts/funciones.js"></script>
+	<style>
+	.form-control:focus 
+		{
+		border-color: #FF0000;
+		box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+		}
+	
+	
+	</style>	
 </head>
 
-<body onload="crearBase()">
+<body>
+	<!--div class="col-sm-6 col-md-6 form-group">
+		<form action="php/uploadFile.php" method="post" enctype="multipart/form-data">		
+			<label for="barras"> Actualizar articulos </label>
+			<input type="file" class="btn btn-default" name="archivo" id="archivo"></input>			
+			<br>
+			<input type="submit" class="btn btn-danger" value="Actualizar" name="submit"></input>
+		</form>							
+	</div-->
 	<div class="container">
 	<!--div class="container-fluid"-->
 		<div class="row">
-			<div class="col-sm-8 col-md-8">
-				<!--h1>Vans</h1-->
-				<img src="img/vans_banner.jpg" alt="vans">
+			<div class="col-sm-12 col-md-12">				
+				<img class="img-responsive" src="img/vans_banner.jpg" alt="vans">
 			</div>		
 		</div>
-		
+		 
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<ul class="nav navbar-nav">
 					<li><img src="img/vans_logo_rojo.png" alt="vans_logo" style="margin: 10 0 0 0px"></li>
 					<li><a href="home.php">Home</a></li>
 					<li><a href="home.php">Nuevo Inventario</a></li>
-					<li><a href="#" onclick="ver('inventario')">Ver Inventario</a></li>
-					<li><a href="#" onclick="ver('formularioActualizar')">Actualizar articulos</a></li>
+					<li><a href="#" id="inventario" onclick="ver('inventario')">Ver Inventario</a></li>
+					<li><a href="#" id="grilla" onclick="ver('grilla')" class="btn btn-link disabled">Ver grilla</a></li>
+					<li><a href="#" id="update" onclick="ver('formularioActualizar')" class="btn btn-link disabled">Actualizar articulos</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -71,7 +88,7 @@
 				<table id="articulos" class="table">
 					<thead>
 						<tr>						
-							<?php
+							<?php					
 							$encabezados = array("Linea", "Modelo", "Codigo", "Temporada", "Medida", "Barra", "Precio");					
 							foreach($encabezados as $encabezado)
 								{
@@ -79,6 +96,7 @@
 								}
 							
 							echo "<th id='cantidad'></th>";		
+							
 							?>
 						</tr>		
 					</thead>
@@ -86,8 +104,7 @@
 					<tbody id="listado">
 						
 					</tbody>							
-				</table>
-					
+				</table>					
 			</div>
 
 			<div class="col-sm-10 col-md-10">
@@ -96,7 +113,6 @@
 		</div>
 
 		<div class="row">
-			<br>
 			
 		</div>	
 	</div>	

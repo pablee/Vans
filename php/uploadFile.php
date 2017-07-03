@@ -1,20 +1,27 @@
 <?php
 session_start();
 include "../clases/database.php";
+/**********************************************************/
+/***** ANTES DE SUBIR EL ARCHIVO SE DEBE BORRAR EL \r *****/
+/**********************************************************/
 
-//antes de subir el archivo se debe borrar el \r
+//Ruta para desarrollo:
 $target_path = "../../../../mysql/data/vans/";
+//Ruta para produccion:
+//$target_path = "../../../mysql/data/vans/";
 $target_path = $target_path . basename($_FILES['archivo']['name']); 
 
 if(move_uploaded_file($_FILES['archivo']['tmp_name'], $target_path)) 
 	{ 
+	echo $target_path;
 	echo "El archivo ". basename($_FILES['archivo']['name']). " ha sido subido<br>";
 	} 
 	else
 		{
+		echo $target_path;
 		echo "Ha ocurrido un error, trate de nuevo!<br>";
 		} 
-		
+	
 $db = new database();
 $db->conectar();
 

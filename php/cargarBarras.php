@@ -46,9 +46,9 @@ if($barra=="guardar")
 	else{
 		if($barra!="")
 			{
-			//Consulta en la base el articulo ingresado	//array_reverse recorre el array a la inversa	
+			//Consulta en la base el articulo ingresado	//array_reverse recorre el array a la inversa				
 			$i=$_SESSION["i"];
-			$articulo->consultarArticulo($barra, $i);	
+			$articulo->consultarArticulo($barra, $i);				
 			}
 		}
 	
